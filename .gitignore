@@ -1,0 +1,14 @@
+node_modules
+/lib
+/coverage
+/dist
+/.cache
+Thumbs.db
+.DS_Store
+.idea
+*.suo
+*.sublime-project
+*.sublime-workspace
+.vscode/
+*.log
+.directory

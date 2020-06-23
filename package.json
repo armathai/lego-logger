@@ -1,0 +1,45 @@
+{
+  "name": "@armathai/lego-logger",
+  "version": "1.0.0",
+  "description": "A logger for @armathai/lego",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "start": "npx parcel src/__examples__/index.html",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build --scripts-prepend-node-path",
+    "prepublishOnly": "npm test && npm run lint",
+    "generate-event-names": "node src/__examples__/scripts/generate-event-names.js --name=ModelEvents --input=./src/__examples__/ts/model --output=./src/__examples__/ts/events --type=ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armathai/lego-logger"
+  },
+  "keywords": [
+    "MVC"
+  ],
+  "author": "Armathai LLC",
+  "license": "MIT",
+  "homepage": "https://github.com/armathai/lego-logger#readme",
+  "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "codecov": "^3.6.5",
+    "jest": "^25.1.0",
+    "parcel-bundler": "^1.12.4",
+    "phaser": "^3.22.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.0",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "@armathai/lego": "^1.0.0"
+  }
+}
