@@ -1,7 +1,7 @@
 import { lego } from '@armathai/lego';
 import { GameModel } from '../model/game/GameModel';
 import { PlayerModel } from '../model/player/PlayerModel';
-import { store } from '../model/store';
+import { store } from '../model/Store';
 import { updateLevelCommand } from './game/updateLevelCommand';
 import { updateScoreCommand } from './player/updateScoreCommand';
 

@@ -1,4 +1,4 @@
-import { store } from "../model/store";
+import { store } from '../model/Store';
 
 export function removeCellCommand(cellUUID: string): void {
   const { board } = store.gameModel.level;

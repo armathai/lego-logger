@@ -1,6 +1,6 @@
 {
   "name": "@armathai/lego-logger",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A logger for @armathai/lego",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -40,6 +40,6 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "@armathai/lego": "^1.0.0"
+    "@armathai/lego": "^2.0.0"
   }
 }

@@ -7,8 +7,8 @@ import { loadProgressCommand } from './loadProgressCommand';
 
 export function startupCommand(): void {
   lego.command
-    .map(ViewEvents.Load.Progress, loadProgressCommand)
-    .map(ViewEvents.Load.Complete, loadCompleteCommand)
-    .map(ViewEvents.GameScene.Ready, gameSceneReadyCommand)
-    .map(ViewEvents.CellView.Click, cellClickCommand);
+    .on(ViewEvents.Load.Progress, loadProgressCommand)
+    .once(ViewEvents.Load.Complete, loadCompleteCommand)
+    .once(ViewEvents.GameScene.Ready, gameSceneReadyCommand)
+    .on(ViewEvents.CellView.Click, cellClickCommand);
 }

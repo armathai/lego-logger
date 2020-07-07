@@ -2,9 +2,6 @@ export const ModelEvents = Object.freeze({
   ObservableModel: {
     UuidUpdate: 'ObservableModelUuidUpdate',
   },
-  PlayerModel: {
-    ScoreUpdate: 'PlayerModelScoreUpdate',
-  },
   Store: {
     GameModelUpdate: 'StoreGameModelUpdate',
     PlayerModelUpdate: 'StorePlayerModelUpdate',
