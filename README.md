@@ -1,1 +1,1 @@
-# Simple, scalable state management
+# A logger for @armathai/lego
