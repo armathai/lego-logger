@@ -1,7 +1,8 @@
+import { lego } from '@armathai/lego';
 import { legologger } from '../src';
 
 test('Start logger', () => {
-    legologger.start({
+    legologger.start(lego, {
         debugCommand: false,
         debugEventArguments: false,
         debugEvents: false,

@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { ICommand, IGuard, lego } from '@armathai/lego';
 import { IDebugConfig } from './Types';
 
 class Logger {
-    private _event = lego.event;
-    private _command = lego.command;
-    private _config!: IDebugConfig;
+    private _event;
+    private _command;
+    private _config: IDebugConfig;
     private _gap = 0;
 
-    public start(debugConfig: IDebugConfig): void {
+    public start(lego: { event; command }, debugConfig?: IDebugConfig): void {
         const { event, command } = lego;
         this._event = event;
         this._command = command;
@@ -46,7 +45,7 @@ class Logger {
             // @ts-ignore
             const originalPrivateExecute = this._command._execute.bind(this._command);
             // @ts-ignore
-            this._command._execute = (command: ICommand, ...args: unknown[]) => {
+            this._command._execute = (command: () => void, ...args: unknown[]) => {
                 this._gap += 1;
                 this._debugCommand(command);
                 const executeResult = originalPrivateExecute(command, ...args);
@@ -56,7 +55,7 @@ class Logger {
             };
 
             const originalPublicExecute = this._command.execute.bind(this._command);
-            this._command.execute = (...commands: ICommand[]) => {
+            this._command.execute = (...commands: (() => void)[]) => {
                 // @ts-ignore
                 if (debugGuards && this._command._guards.length) {
                     this._gap += 1;
@@ -103,10 +102,10 @@ class Logger {
         this._log(message, ...logStyle);
     }
 
-    private _debugGuards(commands: ICommand[]): void {
+    private _debugGuards(commands: (() => void)[]): void {
         // @ts-ignore
         const { _guards: guards, _payloads: payloads } = this._command;
-        const notPassedGuard = guards.find((guard: IGuard) => !guard.call(undefined, ...payloads));
+        const notPassedGuard = guards.find((guard) => !guard.call(undefined, ...payloads));
         const passed = !notPassedGuard;
 
         commands.forEach((command) => {
