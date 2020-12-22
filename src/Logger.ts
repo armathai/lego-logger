@@ -7,13 +7,39 @@ class Logger {
     private _config: IDebugConfig;
     private _gap = 0;
 
-    public start(lego: { event; command }, debugConfig?: IDebugConfig): void {
+    public start(lego: { event; command; not }, debugConfig?: IDebugConfig): void {
         const { event, command } = lego;
         this._event = event;
         this._command = command;
         this._config = this._getConfig(debugConfig);
 
-        this._patchEvents()._patchCommands();
+        this._patchEvents()._patchCommands()._patchNot(lego);
+    }
+
+    private _patchNot(lego: { not: (fn: (...args: unknown[]) => boolean) => (...args: unknown[]) => boolean }): this {
+        const patchNot = (fn: (...args: unknown[]) => boolean): ((...args: unknown[]) => boolean) => {
+            const wrappedFn = (...args: unknown[]): boolean => {
+                return !fn(...args);
+            };
+
+            const wrappedFnDescriptor = Object.getOwnPropertyDescriptor(wrappedFn, 'name');
+
+            if (!wrappedFnDescriptor.configurable) {
+                return wrappedFn;
+            }
+
+            const upperCaseName = fn.name.charAt(0).toUpperCase() + fn.name.slice(1);
+
+            Object.defineProperties(wrappedFn, {
+                name: { value: `not${upperCaseName}` },
+            });
+
+            return wrappedFn;
+        };
+
+        lego.not = patchNot;
+
+        return this;
     }
 
     private _patchEvents(): this {

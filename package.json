@@ -49,7 +49,6 @@
         "dist/**/*"
     ],
     "dependencies": {
-        "@armathai/lego": "^3.0.1",
         "core-js": "^3.8.1"
     }
 }

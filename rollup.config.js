@@ -13,7 +13,7 @@ export default {
 
     // Specify here external modules which you don't want to include in your bundle (for instance: 'lodash', 'moment' etc.)
     // https://rollupjs.org/guide/en#external-e-external
-    external: ['@armathai/lego'],
+    external: [],
 
     plugins: [
         // Allows node_modules resolution
@@ -58,7 +58,7 @@ export default {
             format: 'umd',
             name,
             // https://rollupjs.org/guide/en#output-globals-g-globals
-            globals: { '@armathai/lego': 'lego' },
+            globals: {},
         },
     ],
 };
