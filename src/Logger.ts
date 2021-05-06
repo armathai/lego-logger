@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { lego as l } from '@armathai/lego';
 import { IDebugConfig } from './Types';
 
 class Logger {
@@ -7,7 +8,7 @@ class Logger {
     private _config: IDebugConfig;
     private _gap = 0;
 
-    public start(lego: { event; command; not }, debugConfig?: IDebugConfig): void {
+    public start(lego: typeof l, debugConfig?: IDebugConfig): void {
         const { event, command } = lego;
         this._event = event;
         this._command = command;
