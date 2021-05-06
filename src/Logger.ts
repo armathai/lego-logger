@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { lego as l } from '@armathai/lego';
 import { IDebugConfig } from './Types';
 
@@ -69,9 +68,7 @@ class Logger {
         const { debugCommand, debugGuards } = this._config;
 
         if (debugCommand) {
-            // @ts-ignore
             const originalPrivateExecute = this._command._execute.bind(this._command);
-            // @ts-ignore
             this._command._execute = (command: () => void, ...args: unknown[]) => {
                 this._gap += 1;
                 this._debugCommand(command);
@@ -83,7 +80,6 @@ class Logger {
 
             const originalPublicExecute = this._command.execute.bind(this._command);
             this._command.execute = (...commands: (() => void)[]) => {
-                // @ts-ignore
                 if (debugGuards && this._command._guards.length) {
                     this._gap += 1;
                     this._debugGuards(commands);
@@ -130,7 +126,6 @@ class Logger {
     }
 
     private _debugGuards(commands: (() => void)[]): void {
-        // @ts-ignore
         const { _guards: guards, _payloads: payloads } = this._command;
         const notPassedGuard = guards.find((guard) => !guard.call(undefined, ...payloads));
         const passed = !notPassedGuard;
