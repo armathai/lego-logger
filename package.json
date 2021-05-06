@@ -1,6 +1,6 @@
 {
     "name": "@armathai/lego-logger",
-    "version": "3.0.2",
+    "version": "4.0.0",
     "description": "A logger for @armathai/lego",
     "main": "dist/lego-logger.cjs.js",
     "module": "dist/lego-logger.esm.js",
